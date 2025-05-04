@@ -1,0 +1,9 @@
+const Constants = {
+    USER_SIGNED_IN: 'USER_SIGNED_IN',
+    USER_SIGNED_OUT: 'USER_SIGNED_OUT',
+    FETCH_INCIDENTS: 'FETCH_INCIDENTS',
+    FETCH_INCIDENT: 'FETCH_INCIDENT',
+    SET_INCIDENT: 'SET_INCIDENT',
+};
+
+export default Constants;
