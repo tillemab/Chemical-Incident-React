@@ -31,7 +31,7 @@ export default function Signin() {
                 <label htmlFor="password">Password</label>
                 <input type="password" placeholder="Enter Password" name="password" onChange={(e) => handleChanges(e)} />
             </form>
-            <button onClick={submit} disabled={!values.email || !values.password}>
+            <button onClick={submit} disabled={!values.email || !values.password} className="button-submit">
                 Sign In
             </button>
         </div>

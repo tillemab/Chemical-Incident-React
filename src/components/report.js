@@ -7,9 +7,17 @@ export default function Report() {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [values, setValues] = useState({})
+    const [values, setValues] = useState({
+        wasExplosion: false,
+        wasFire: false,
+        wasFatality: false,
+        wasSeriousInjury: false,
+        wasSubstantialPropertyDamage: false
+    })
 
     const handleChanges = (e) => {
+        if (e.target.value === "on") e.target.value = true;
+        if (e.target.value === "off") e.target.value = false;
         setValues({...values, [e.target.name]: e.target.value})
     };
 
@@ -20,7 +28,7 @@ export default function Report() {
 
     return (
         <div className="container">
-            <h1>Reporter an Incident</h1>
+            <h1>Report an Incident</h1>
             <h2>Owner/Operator Information</h2>
             <form>
                 <label htmlFor="companyName">Company Name*</label>
@@ -127,9 +135,8 @@ export default function Report() {
                 <input type="url" name="reportURL" onChange={(e) => handleChanges(e)} />
             </form>
             <button onClick={submit} disabled={
-                !values.companyName || !values.facilityCity || !values.facilityState || 
-                !values.wasFatality || !values.wasSeriousInjury || !values.wasSubstantialPropertyDamage
-            }>
+                !values.companyName || !values.facilityCity || !values.facilityState
+            } className="button-submit">
                 Submit Report
             </button>
         </div>

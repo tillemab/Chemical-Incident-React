@@ -15,6 +15,12 @@ function incidentFetched(incident) {
     };
 };
 
+export function setLoading() {
+    return {
+        type: actionTypes.SET_LOADING
+    };
+};
+
 export function fetchUnverifiedIncidents() {
     return dispatch => {
         return fetch(`${env.REACT_APP_API_URL}/admin/incidents`, {
@@ -50,7 +56,7 @@ export function fetchIncident(incidentID) {
             return response.json();
         }).then((response) => {
             dispatch(incidentFetched(response.incident));
-        }).catch((error) => console.log('Error fetching incidents:', error));
+        }).catch((error) => console.log('Error fetching incident:', error));
     };
 };
 
@@ -63,14 +69,14 @@ export function verifyIncident(incidentID, data) {
                 'Content-Type': 'application/json',
                 'Authorization': localStorage.getItem('token')
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify({isVerified: true}),
             mode: 'cors'
         }).then((response) => {
             if (!response.ok) throw Error(response.statusText);
             return response.json();
         }).then((response) => {
             console.log(response.message);
-        }).catch((error) => console.log('Error submitting incident:', error));
+        }).catch((error) => console.log('Error verifying incident:', error));
     };
 };
 
@@ -89,6 +95,6 @@ export function deleteIncident(incidentID) {
             return response.json();
         }).then((response) => {
             console.log(response.message);
-        }).catch((error) => console.log('Error submitting incident:', error));
+        }).catch((error) => console.log('Error deleting incident:', error));
     };
 };

@@ -6,22 +6,22 @@ export default function Dashboard() {
 
     const dispatch = useDispatch();
     const incidents = useSelector(state => state.incidents.incidents);
-    let [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
 
     const memoizedIncidents = useMemo(() => {
         return incidents
     }, [incidents]);
 
     useEffect(() => {
-        dispatch(fetchVerifiedIncidents((currentPage - 1) * 25, 25));
+        dispatch(fetchVerifiedIncidents((currentPage - 1) * 20, 20));
     }, [dispatch, currentPage]);
 
-    const nextPage = () => setCurrentPage(currentPage++);
-    const lastPage = () => setCurrentPage(currentPage--);
+    const nextPage = () => setCurrentPage(currentPage + 1);
+    const lastPage = () => setCurrentPage(currentPage - 1);
 
     return (
-        <div className='incidents-table'>
-            <table>
+        <div>
+            <table className='incident-table'>
                 <thead>
                     <tr>
                         <th>Date</th>
@@ -39,22 +39,24 @@ export default function Dashboard() {
                             <td>{incident.date}</td>
                             <td>{incident.companyName}</td>
                             <td>{`${incident.facilityCity}, ${incident.facilityState}`}</td>
-                            <td>{incident.wasFatality ? 'Y' : 'N'}</td>
-                            <td>{incident.wasSeriousInjury ? 'Y' : 'N'}</td>
-                            <td>{incident.wasSubstantialPropertyDamage ? 'Y' : 'N'}</td>
+                            <td>{incident.wasFatality ? '✓' : 'X'}</td>
+                            <td>{incident.wasSeriousInjury ? '✓' : 'X'}</td>
+                            <td>{incident.wasSubstantialPropertyDamage ? '✓' : 'X'}</td>
                             {incident.reportURL && <td><a href={incident.reportURL}>Investigation</a></td>}
-                            {!incident.reportURL && <td></td>}
+                            {!incident.reportURL && <td>N/A</td>}
                         </tr>
                     )))}
                 </tbody>
             </table>
-            <button onClick={lastPage} disabled={currentPage === 1}>
-                Previous
-            </button>
-            <p>{`Page ${currentPage}`}</p>
-            <button onClick={nextPage} disabled={incidents.length !== 25}>
-                Next
-            </button>
+            <div className="buttons">
+                <button onClick={lastPage} disabled={currentPage === 1} className="button">
+                    Previous
+                </button>
+                <p>{`Page ${currentPage}`}</p>
+                <button onClick={nextPage} disabled={incidents.length !== 20} className="button">
+                    Next
+                </button>
+            </div>
         </div>
     );
 

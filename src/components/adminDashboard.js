@@ -1,11 +1,12 @@
 import React, { useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUnverifiedIncidents } from '../actions/adminActions';
+import { fetchUnverifiedIncidents, setLoading } from '../actions/adminActions';
 
 export default function AdminDashboard() {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const incidents = useSelector(state => state.incidents.incidents);
 
     const memoizedIncidents = useMemo(() => {
@@ -16,13 +17,14 @@ export default function AdminDashboard() {
         dispatch(fetchUnverifiedIncidents());
     }, [dispatch]);
 
-    const viewIncident = () => {
-
+    const viewIncident = (incidentID) => {
+        dispatch(setLoading());
+        navigate(`/admin/${incidentID}`);
     }
 
     return (
-        <div className='incidents-table'>
-            <table>
+        <div>
+            <table className='incident-table'>
                 <thead>
                     <tr>
                         <th>Date</th>
@@ -31,20 +33,19 @@ export default function AdminDashboard() {
                         <th>Fatality</th>
                         <th>Serious Injury</th>
                         <th>Substantial Property Damage</th>
-                        <th>Report</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     {memoizedIncidents.map((incident => (
-                        <tr onClick={viewIncident}>
+                        <tr>
                             <td>{incident.date}</td>
                             <td>{incident.companyName}</td>
                             <td>{`${incident.facilityCity}, ${incident.facilityState}`}</td>
-                            <td>{incident.wasFatality ? 'Y' : 'N'}</td>
-                            <td>{incident.wasSeriousInjury ? 'Y' : 'N'}</td>
-                            <td>{incident.wasSubstantialPropertyDamage ? 'Y' : 'N'}</td>
-                            {incident.reportURL && <td><a href={incident.reportURL}>Investigation</a></td>}
-                            {!incident.reportURL && <td></td>}
+                            <td>{incident.wasFatality ? '✓' : 'X'}</td>
+                            <td>{incident.wasSeriousInjury ? '✓' : 'X'}</td>
+                            <td>{incident.wasSubstantialPropertyDamage ? '✓' : 'X'}</td>
+                            <td><button onClick={() => viewIncident(incident._id)} className="button">View</button></td>
                         </tr>
                     )))}
                 </tbody>

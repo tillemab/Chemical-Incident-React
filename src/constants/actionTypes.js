@@ -3,7 +3,7 @@ const Constants = {
     USER_SIGNED_OUT: 'USER_SIGNED_OUT',
     FETCH_INCIDENTS: 'FETCH_INCIDENTS',
     FETCH_INCIDENT: 'FETCH_INCIDENT',
-    SET_INCIDENT: 'SET_INCIDENT',
+    SET_LOADING: 'SET_LOADING',
 };
 
 export default Constants;

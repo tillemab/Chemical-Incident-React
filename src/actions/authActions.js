@@ -37,6 +37,7 @@ export function submitSignin(data) {
 export function submitSignout() {
     return dispatch => {
         localStorage.removeItem('token');
+        localStorage.removeItem('isAdmin');
         dispatch(userSignedOut());
     };
 };

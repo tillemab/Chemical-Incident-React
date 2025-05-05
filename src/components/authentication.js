@@ -11,12 +11,14 @@ export default function Authentication() {
 
     return (
         <div>
-            <button onClick={selectSignin} disabled={activeTab==='signin'}>
-                Sign In As Existing User
-            </button>
-            <button onClick={selectSignup} disabled={activeTab==='signup'}>
-                Create an Account
-            </button>
+            <div class="buttons">
+                <button onClick={selectSignin} disabled={activeTab==='signin'} className="button">
+                    Sign In
+                </button>
+                <button onClick={selectSignup} disabled={activeTab==='signup'} className="button">
+                    Sign Up
+                </button>
+            </div>
             {activeTab === 'signin' && <Signin />}
             {activeTab === 'signup' && <Signup />}
         </div>

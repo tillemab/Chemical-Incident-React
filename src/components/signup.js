@@ -35,10 +35,10 @@ export default function Signup() {
                 onChange={(e) => handleChanges(e)} />
 
                 <label htmlFor="password">Password</label>
-                <input type="text" placeholder="Enter Password" name="password"
+                <input type="password" placeholder="Enter Password" name="password"
                 onChange={(e) => handleChanges(e)} />
             </form>
-            <button onClick={submit} disabled={!values.email || !values.username || !values.password}>
+            <button onClick={submit} disabled={!values.email || !values.username || !values.password} className="button-submit">
                 Create Account
             </button>
         </div>

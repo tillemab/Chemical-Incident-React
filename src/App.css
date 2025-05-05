@@ -1,9 +1,137 @@
 .navbar{
-    background: #D3D3FF;
+    display: flex;
+    margin: auto;
+    justify-content: space-between;
+    background: #5F4180;
+    padding: 10px 25px;
 }
 
-.navbar-options{
-    margin: 0;
-    padding: 0;
+.navbar-title {
+    font-weight: bold;
+    font-size: 20px;
+    color: #ffffff;
+    text-decoration: none;
+    padding-left: 25px;
+}
+
+.navbar-option {
     text-align: right;
+    display: inline;
+    color: #ffffff;
+    text-decoration: none;
+    padding-right: 15px;
+}
+
+.navbar-option:last-of-type {
+    padding-right: 25px;
+}
+
+.incident-table {
+    width: 80%;
+    margin: 25px auto;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.incident-table thead tr {
+    background-color: #D3D3FF;
+    font-weight: bold;
+}
+
+.incident-table th {
+    min-width: 150px;
+}
+
+.incident-table th, td {
+    padding: 5px 15px;
+}
+
+.incident-table tbody tr {
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.incident-table tbody tr:nth-of-type(even) {
+    background-color: #F0F0F0;
+}
+
+.incident-table tbody tr:last-of-type {
+    border-bottom: 2px solid #D3D3FF;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin-top: 30px;
+    height: 30px;
+    gap: 50px;
+}
+
+.button {
+    align-items: flex;
+    width: 100px;
+    height: 30px;
+    padding: 0px;
+    background-color: #5F4180;
+    color: #ffffff;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    overflow: hidden;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.button:disabled {
+    background-color: #282130;
+    color: #999999;
+}
+
+.button-submit {
+    margin-top: 15px;
+    align-items: flex;
+    width: 150px;
+    height: 30px;
+    padding: 0px;
+    background-color: #5F4180;
+    color: #ffffff;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    overflow: hidden;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.button-submit:disabled {
+    background-color: #282130;
+    color: #999999;
+}
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    margin-top: 30px;
+    padding: 10px;
+    border-top: 10px solid #D3D3FF;
+    border-bottom: 10px solid #D3D3FF;
+}
+
+.container .incident-table th {
+    min-width: 370px;
+}
+
+input {
+    width: 80%;
+    padding: 10px 15px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    display: grid;
+    margin-left: auto;
+    margin-right: auto;
 }
