@@ -38,10 +38,6 @@
     font-weight: bold;
 }
 
-.incident-table th {
-    min-width: 150px;
-}
-
 .incident-table th, td {
     padding: 5px 15px;
 }
